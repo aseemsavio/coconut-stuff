@@ -6,29 +6,38 @@ function App() {
 
     const [rows, setRows] = useState({
         1: {
-            "kg": 0,
-            "grams": 0,
-            "count": 0
-        },
-        2: {
+            "id": 1,
             "kg": 0,
             "grams": 0,
             "count": 0
         }
     })
 
-    const updateRow = (event) => {
-        const _rows = {
-            ...rows,
-            "a": ""
+    const addRow = () => {
+        const keyList = Object.keys(rows).sort()
+        const lastKey = keyList[keyList.length - 1]
+        const newKey = parseInt(lastKey) + 1
+        const newValue = {
+            "id": newKey,
+            "kg": 0,
+            "grams": 0,
+            "count": 0
         }
-        setRows(_rows)
+        const newListValue = {
+            ...rows,
+            [newKey]: newValue
+        }
+        setRows(newListValue)
     }
 
-    const updateList = (row) => {
-
+    const updateListObject = (row) => {
+        const newListObject = {
+            ...rows,
+            [row.id]: row
+        }
+        setRows(newListObject)
     }
-  
+
     return (
         <div className="App">
             <p>Hello World</p>
@@ -37,11 +46,13 @@ function App() {
                     return <Row
                         key={key}
                         index={key}
-                        row={rows[key]
-                        } />
+                        row={rows[key]}
+                        updateRows={updateListObject}
+                    />
                 })
             }
-            <button onClick={updateRow} >Add Row</button>
+            <button onClick={addRow}>Add Row</button>
+            <p>{JSON.stringify(rows)}</p>
         </div>
     );
 }

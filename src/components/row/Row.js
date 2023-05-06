@@ -3,7 +3,7 @@ import {NumericInput} from "../input/NumericInput";
 import {Board} from "../board/Board";
 import {useState} from "react";
 
-export const Row = ({index, row}) => {
+export const Row = ({index, row, updateRows}) => {
 
     const [rowValue, setRowValue] = useState({
         "id": index,
@@ -33,6 +33,7 @@ export const Row = ({index, row}) => {
         }
         console.log(updatedRow)
         setRowValue(updatedRow)
+        updateRows(updatedRow)
     }
 
     return (
