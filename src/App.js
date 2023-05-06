@@ -4,25 +4,44 @@ import {useState} from "react";
 
 function App() {
 
-    const [rows, setRows] = useState([
-        {
-            "kg": 3,
-            "grams": 234
+    const [rows, setRows] = useState({
+        1: {
+            "kg": 0,
+            "grams": 0,
+            "count": 0
         },
-        {
-            "kg": 4,
-            "grams": 678
-        },
-    ])
+        2: {
+            "kg": 0,
+            "grams": 0,
+            "count": 0
+        }
+    })
+
+    const updateRow = (event) => {
+        const _rows = {
+            ...rows,
+            "a": ""
+        }
+        setRows(_rows)
+    }
+
+    const updateList = (row) => {
+
+    }
   
     return (
         <div className="App">
             <p>Hello World</p>
             {
-                rows.map(r => {
-                    return <Row/>
+                Object.keys(rows).sort().map((key) => {
+                    return <Row
+                        key={key}
+                        index={key}
+                        row={rows[key]
+                        } />
                 })
             }
+            <button onClick={updateRow} >Add Row</button>
         </div>
     );
 }

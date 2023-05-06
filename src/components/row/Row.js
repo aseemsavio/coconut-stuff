@@ -1,13 +1,45 @@
 import "./Row.css"
-import {Input} from "../input/Input";
+import {NumericInput} from "../input/NumericInput";
 import {Board} from "../board/Board";
+import {useState} from "react";
 
-export const Row = () => {
+export const Row = ({index, row}) => {
+
+    const [rowValue, setRowValue] = useState({
+        "id": index,
+        "kg": row.kg,
+        "grams": row.grams,
+        "count": row.count,
+    })
+
+    const parseNum = (number) => {
+        try {
+            console.log(number)
+            if (isNaN(parseInt(number))) {
+                return 0
+            } else {
+                return parseInt(number)
+            }
+        } catch (error) {
+            return 0
+        }
+    }
+
+    const changeHandler = (e) => {
+
+        const updatedRow = {
+            ...rowValue,
+            [e.target.name]: parseNum(e.target.value)
+        }
+        console.log(updatedRow)
+        setRowValue(updatedRow)
+    }
+
     return (
         <div className={"row"}>
-            <Input label={"Kg"}/>
-            <Input label={"Grams"}/>
-            <Input label={"Count"}/>
+            <NumericInput name={"kg"} label={"Kg"} onChange={changeHandler} value={rowValue.kg}/>
+            <NumericInput name={"grams"} label={"Grams"} onChange={changeHandler} value={rowValue.grams}/>
+            <NumericInput name={"count"} label={"Count"} onChange={changeHandler} value={rowValue.count}/>
             <Board/>
         </div>
     )
