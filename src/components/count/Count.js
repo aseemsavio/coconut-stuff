@@ -5,7 +5,7 @@ export const Count = ({count}) => {
     return (
         <div className={"count"}>
             <p className={"thick"}>{count}</p>
-            <p className={"small-label"}>coconuts</p>
+            <p className={"small-label"}>nos.</p>
         </div>
     )
 }
