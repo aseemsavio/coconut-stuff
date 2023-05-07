@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/coconut-stuff/static/css/main.16987fe9.css",
+    "main.js": "/coconut-stuff/static/js/main.e68aa23e.js",
+    "static/js/787.e691ee25.chunk.js": "/coconut-stuff/static/js/787.e691ee25.chunk.js",
+    "index.html": "/coconut-stuff/index.html",
+    "main.16987fe9.css.map": "/coconut-stuff/static/css/main.16987fe9.css.map",
+    "main.e68aa23e.js.map": "/coconut-stuff/static/js/main.e68aa23e.js.map",
+    "787.e691ee25.chunk.js.map": "/coconut-stuff/static/js/787.e691ee25.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.16987fe9.css",
+    "static/js/main.e68aa23e.js"
+  ]
+}
