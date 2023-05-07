@@ -10,6 +10,9 @@ export const Row = ({index, row, updateRows}) => {
         "kg": row.kg,
         "grams": row.grams,
         "count": row.count,
+        "cumulativeCount": row.cumulativeCount,
+        "cumulativeWeightKg": row.cumulativeWeightKg,
+        "cumulativeWeightGrams": row.cumulativeWeightGrams
     })
 
     const parseNum = (number) => {
@@ -41,7 +44,7 @@ export const Row = ({index, row, updateRows}) => {
             <NumericInput name={"kg"} label={"Kg"} onChange={changeHandler} value={rowValue.kg}/>
             <NumericInput name={"grams"} label={"Grams"} onChange={changeHandler} value={rowValue.grams}/>
             <NumericInput name={"count"} label={"Count"} onChange={changeHandler} value={rowValue.count}/>
-            <Board/>
+            <Board kg={row.cumulativeWeightKg} grams={row.cumulativeWeightGrams} count={row.cumulativeCount} />
         </div>
     )
 }
