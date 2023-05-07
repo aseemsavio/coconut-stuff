@@ -9,7 +9,10 @@ function App() {
             "id": 1,
             "kg": 0,
             "grams": 0,
-            "count": 0
+            "count": 0,
+            "cumulativeCount": 0,
+            "cumulativeWeightKg": 0,
+            "cumulativeWeightGrams": 0,
         }
     })
 
@@ -17,7 +20,6 @@ function App() {
 
     useEffect(() => {
         if (rowsChanged) {
-            console.log("Row changed, recalculating cummulatives")
             addCumulativeWeightAndCountToRows(rows, setRows, setRowsChanged)
             setRowsChanged(false); // reset the state of rowsChanged
         }
@@ -31,7 +33,10 @@ function App() {
             "id": newKey,
             "kg": 0,
             "grams": 0,
-            "count": 0
+            "count": 0,
+            "cumulativeCount": rows[lastKey].cumulativeCount,
+            "cumulativeWeightKg": rows[lastKey].cumulativeWeightKg,
+            "cumulativeWeightGrams": rows[lastKey].cumulativeWeightGrams,
         }
         const newListValue = {
             ...rows,
@@ -109,7 +114,7 @@ const addCumulativeWeightAndCountToRows = (obj, setRows, setRowsChanged) => {
                 value.cumulativeWeightGrams = cumulativeWeightGrams;
         */
 
-        const newValue = {
+        const newRowValue = {
             ...value,
             "cumulativeCount": cumulativeCount,
             "cumulativeWeightKg": cumulativeWeightKg,
@@ -117,10 +122,12 @@ const addCumulativeWeightAndCountToRows = (obj, setRows, setRowsChanged) => {
         }
 
         const newListObject = {
-            ...obj,
-            [value.id]: newValue
+            ...newObject,
+            [key]: newRowValue
         }
+
         newObject = newListObject
+
         //setRows(newListObject)
         // set the rowsChanged state to true to indicate that the rows state has changed
         //setRowsChanged(true);
