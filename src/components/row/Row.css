@@ -5,3 +5,10 @@
     gap: 1rem;
     margin-bottom: 2px;
 }
+
+.row-id {
+    font-weight: lighter;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

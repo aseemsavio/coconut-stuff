@@ -41,6 +41,7 @@ export const Row = ({index, row, updateRows}) => {
 
     return (
         <div className={"row"}>
+            <p className={"row-id"}>{rowValue.id}</p>
             <NumericInput name={"kg"} label={"Kg"} onChange={changeHandler} value={rowValue.kg}/>
             <NumericInput name={"grams"} label={"Grams"} onChange={changeHandler} value={rowValue.grams}/>
             <NumericInput name={"count"} label={"Count"} onChange={changeHandler} value={rowValue.count}/>

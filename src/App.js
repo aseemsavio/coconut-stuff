@@ -57,7 +57,9 @@ function App() {
 
     return (
         <div className="App">
-            <p>Hello World</p>
+            <br/>
+            <p className={"label"}>Cummulative coconut stuff</p>
+            <br/>
             {
                 Object.keys(rows).sort().map((key) => {
                     return <Row
@@ -68,8 +70,7 @@ function App() {
                     />
                 })
             }
-            <button onClick={addRow}>Add Row</button>
-            <p>{JSON.stringify(rows)}</p>
+            <button className={"button"} onClick={addRow}>Add Row</button>
         </div>
     );
 }
@@ -77,15 +78,6 @@ function App() {
 
 export default App;
 
-/*const getObjectsTillThisRow = (obj, currentRow) => {
-    return Object.keys(obj)
-        .sort((a, b) => a - b) // sort the keys in ascending order
-        .filter(key => key <= currentRow)
-        .reduce((acc, key) => {
-            acc[key] = obj[key];
-            return acc;
-        }, {});
-}*/
 
 const addCumulativeWeightAndCountToRows = (obj, setRows, setRowsChanged) => {
     let cumulativeCount = 0;
@@ -107,13 +99,6 @@ const addCumulativeWeightAndCountToRows = (obj, setRows, setRowsChanged) => {
             cumulativeWeightGrams = excessGrams % 1000;
         }
 
-        /*
-                value.weight = weightInKg;
-                value.cumulativeCount = cumulativeCount;
-                value.cumulativeWeightKg = cumulativeWeightKg;
-                value.cumulativeWeightGrams = cumulativeWeightGrams;
-        */
-
         const newRowValue = {
             ...value,
             "cumulativeCount": cumulativeCount,
@@ -128,9 +113,6 @@ const addCumulativeWeightAndCountToRows = (obj, setRows, setRowsChanged) => {
 
         newObject = newListObject
 
-        //setRows(newListObject)
-        // set the rowsChanged state to true to indicate that the rows state has changed
-        //setRowsChanged(true);
     });
 
     setRows(newObject)
