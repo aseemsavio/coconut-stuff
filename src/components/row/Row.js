@@ -17,7 +17,6 @@ export const Row = ({index, row, updateRows}) => {
 
     const parseNum = (number) => {
         try {
-            console.log(number)
             if (isNaN(parseInt(number))) {
                 return 0
             } else {
@@ -34,7 +33,6 @@ export const Row = ({index, row, updateRows}) => {
             ...rowValue,
             [e.target.name]: parseNum(e.target.value)
         }
-        console.log(updatedRow)
         setRowValue(updatedRow)
         updateRows(updatedRow)
     }

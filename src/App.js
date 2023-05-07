@@ -1,6 +1,7 @@
 import './App.css';
 import {Row} from "./components/row/Row";
 import {useState, useEffect} from "react";
+import {CSVLink} from "react-csv";
 
 function App() {
 
@@ -29,10 +30,8 @@ function App() {
 
         const keyList = Object.keys(rows).map(k => parseInt(k))
 
-        console.log(keyList)
         const lastKey = keyList[keyList.length - 1]
         const newKey = lastKey + 1
-        console.log(lastKey, newKey)
 
         const newValue = {
             "id": newKey,
@@ -60,10 +59,33 @@ function App() {
         setRowsChanged(true)
     }
 
+    const downloadDataProvider = () => {
+        const value = [
+            ["Batch", "Weight (Kg)", "Weight (grams)", "Count", "Cumulative Weight (Kg)", "Cumulative Weight (g)", "Cumulative Count"]
+        ]
+
+        Object.keys(rows).map(k => parseInt(k)).sort().forEach((k) => {
+            value.push([
+                rows[k].id,
+                rows[k].kg,
+                rows[k].grams,
+                rows[k].count,
+                rows[k].cumulativeWeightKg,
+                rows[k].cumulativeWeightGrams,
+                rows[k].cumulativeCount,
+
+            ])
+        })
+
+
+
+        return value
+    }
+
     return (
         <div className="App">
             <br/>
-            <p className={"label"}>Cummulative coconut stuff</p>
+            <p className={"label"}>🌴 🥥</p>
             <br/>
             {
                 Object.keys(rows).map((key) => {
@@ -76,6 +98,13 @@ function App() {
                 })
             }
             <button className={"button"} onClick={addRow}>Add Row</button>
+            <CSVLink filename={`coconuts`} data={downloadDataProvider()}>Download CSV</CSVLink>
+
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+
         </div>
     );
 }
