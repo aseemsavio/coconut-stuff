@@ -86,18 +86,17 @@ const addCumulativeWeightAndCountToRows = (obj, setRows, setRowsChanged) => {
 
     let newObject = {}
 
-    Object.entries(obj).sort().forEach(([key, value]) => {
-        cumulativeCount += value.count;
-        cumulativeWeightKg += value.kg;
-        cumulativeWeightGrams += value.grams;
+    Object.entries(obj).forEach(([key, value]) => {
+        const combinedWeightInKg = value.kg + (value.grams / 1000)
+        const combinedExistingCummulativeWeightInKg = cumulativeWeightKg + (cumulativeWeightGrams / 1000)
+        const newCombinedCumulativeWeightInKg = (combinedWeightInKg + combinedExistingCummulativeWeightInKg).toFixed(3)
 
-        // Check if cumulative weight of grams exceeds 1 KG
-        if (cumulativeWeightGrams >= 1000) {
-            const excessGrams = cumulativeWeightGrams - 1000;
-            const excessKg = Math.floor(excessGrams / 1000);
-            cumulativeWeightKg += excessKg;
-            cumulativeWeightGrams = excessGrams % 1000;
-        }
+        console.log(newCombinedCumulativeWeightInKg)
+
+        // doing this, but not using it for the next iteration
+        cumulativeCount += value.count;
+        cumulativeWeightKg = parseInt(newCombinedCumulativeWeightInKg.split(".")[0]);
+        cumulativeWeightGrams = parseInt(newCombinedCumulativeWeightInKg.split(".")[1]);
 
         const newRowValue = {
             ...value,
@@ -106,13 +105,10 @@ const addCumulativeWeightAndCountToRows = (obj, setRows, setRowsChanged) => {
             "cumulativeWeightGrams": cumulativeWeightGrams
         }
 
-        const newListObject = {
+        newObject = {
             ...newObject,
             [key]: newRowValue
         }
-
-        newObject = newListObject
-
     });
 
     setRows(newObject)
