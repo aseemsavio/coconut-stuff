@@ -26,9 +26,14 @@ function App() {
     }, [rows, rowsChanged]);
 
     const addRow = () => {
-        const keyList = Object.keys(rows).sort()
+
+        const keyList = Object.keys(rows).map(k => parseInt(k))
+
+        console.log(keyList)
         const lastKey = keyList[keyList.length - 1]
-        const newKey = parseInt(lastKey) + 1
+        const newKey = lastKey + 1
+        console.log(lastKey, newKey)
+
         const newValue = {
             "id": newKey,
             "kg": 0,
@@ -61,7 +66,7 @@ function App() {
             <p className={"label"}>Cummulative coconut stuff</p>
             <br/>
             {
-                Object.keys(rows).sort().map((key) => {
+                Object.keys(rows).map((key) => {
                     return <Row
                         key={key}
                         index={key}
@@ -91,7 +96,6 @@ const addCumulativeWeightAndCountToRows = (obj, setRows, setRowsChanged) => {
         const combinedExistingCummulativeWeightInKg = cumulativeWeightKg + (cumulativeWeightGrams / 1000)
         const newCombinedCumulativeWeightInKg = (combinedWeightInKg + combinedExistingCummulativeWeightInKg).toFixed(3)
 
-        console.log(newCombinedCumulativeWeightInKg)
 
         // doing this, but not using it for the next iteration
         cumulativeCount += value.count;
