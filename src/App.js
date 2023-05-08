@@ -98,7 +98,7 @@ function App() {
                 })
             }
             <button className={"button"} onClick={addRow}>Add Row</button>
-            <CSVLink filename={`coconuts`} data={downloadDataProvider()}>Download CSV</CSVLink>
+            <CSVLink filename={`coconuts.csv`} data={downloadDataProvider()}>Download CSV</CSVLink>
 
             <br/>
             <br/>
